@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "专业管理";
+}
+@model List<MajorViewModel>
+@section Scripts {
+    <script>
+        function Delete(id) {
+            DeleteWithController(id, 'Major');
+        }
+    </script>
+}
+    <a asp-action="Add" class="button is-primary mb-4">添加专业</a>
+<table class="table is-bordered is-striped is-hoverable is-fullwidth">
+        <thead>
+            <tr>
+            <th>ID</th>
+                <th>专业名称</th>
+                <th>编辑</th>
+                <th>删除</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (MajorViewModel major in Model)
+            {
+                <tr>
+                    <td>@major.Id</td>
+                
+                    <td>@major.Name</td>
+                
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@major.Id" class="button is-warning">编辑</a>
+                    </td>
+                    <td>
+                        <button class="button is-danger" onclick="Delete('@major.Id')">删除</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
